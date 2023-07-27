@@ -37,7 +37,7 @@ printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Creating reconwhore backup for las
 zip -r reconwhore.zip /var/log/omnisint/forensics/reconwhore/$username.log 
 fi
 printf "\n"
-printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Checking username\e[0m\e[1;77m %s\e[0m\e[1;92m on: \e[0m\n" /var/log/omnisint/forensics/reconwhore/$username.log
+printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Checking username\e[0m\e[1;77m %s\e[0m\e[1;92m on: \e[0m\n" $username
 
 
 
@@ -47,7 +47,7 @@ check_fetlife=$(curl -s "https://www.fetlife.com/$username" -L -H "Accept-Langua
 
 if [[ $check_fetlife == *'1'* ]]; then
 printf "\e[1;92m Found!\e[0m https://www.fetlife.com/%s\n" $username
-printf "https://www.fetlife.com/%s\n" $username >> /var/log/omnisint/forensics//reconwhore/$username.log
+printf "https://www.fetlife.com/%s\n" $username >> /var/log/omnisint/forensics/reconwhore/$username.log
 
 elif [[ $check_fetlife == *'0'* ]]; then
 printf "\e[1;93mNot Found!\e[0m\n"
