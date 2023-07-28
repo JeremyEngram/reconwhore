@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the list of names
-name_list=("xnxx" "redtube" "pornhub" "youporn" "myfreecams" "onlyfans" "fansly")
+name_list=("chastitymansion" "benaughty" "SDC" "swapfinder" "manyvids" "clips4sale" "bentobox)
 
 # Function to echo the code for each name
 echo_code_for_names() {
@@ -22,10 +22,10 @@ echo_code_for_names() {
     done
 }
 
-# Specify the username for which you want to check the websites
+# Specify the username, email, phone,  for which you want to check the websites
 username="$username"
 
 # Call the function to echo the code for each name into a log file
-echo_code_for_names "$username" > /var/log/omnisint/forensics/reconwhore/code_log.txt
-
+echo_code_for_names "$username" > /var/log/omnisint/forensics/reconwhore/code_log.txt; echo
+echo "PASTE THE FOLLOWING CODE INTO THE VERY BOTTOM OF RECONWHORE.SH:> "
 cat /var/log/omnisint/forensics/reconwhore/code_log.txt

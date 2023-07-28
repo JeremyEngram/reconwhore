@@ -10,6 +10,10 @@ banner() {
 
 echo '==========================================================='
 figlet ReconWhore
+echo " Refactored from userecon, reconwhore cross-refereces multiple "
+echo " OSINT-based datapoints for person-based recon including, "
+echo " usernames, legal names, email, social networks, and extends to.."
+echo " adult sites, members only content sites, public records... more!"
 echo '==========================================================='
 
 printf "Scans A Username And Cross-References Across Multiple Adult\n"

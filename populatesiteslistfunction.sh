@@ -22,8 +22,10 @@ echo_code_for_names() {
     done
 }
 
-# Specify the username for which you want to check the websites
-username="your_username_here"
+# Specify the username, email, phone,  for which you want to check the websites
+username="$username"
 
 # Call the function to echo the code for each name into a log file
-echo_code_for_names "$username" > /var/log/omnisint/forensics/reconwhore/code_log.txt
+echo_code_for_names "$username" > /var/log/omnisint/forensics/reconwhore/code_log.txt; echo
+echo "PASTE THE FOLLOWING CODE INTO THE VERY BOTTOM OF RECONWHORE.SH:> "
+cat /var/log/omnisint/forensics/reconwhore/code_log.txt

@@ -10,6 +10,10 @@ banner() {
 
 echo '==========================================================='
 figlet ReconWhore
+echo " Refactored from userecon, reconwhore cross-refereces multiple "
+echo " OSINT-based datapoints for person-based recon including, "
+echo " usernames, legal names, email, social networks, and extends to.."
+echo " adult sites, members only content sites, public records... more!"
 echo '==========================================================='
 
 printf "Scans A Username And Cross-References Across Multiple Adult\n"
@@ -18,7 +22,7 @@ printf "Otherwise inconsistent catfish/fake/stalker/trolling...\n"
 printf "If accounts are found, it redundanly attemps to pull personally\n"
 printf "posted content from their account with any personally identifiable\n"
 printf "information from various sources such as age/dob/phone/addresses.\n"
- echo 
+
 }
 
 partial() {
@@ -34,7 +38,7 @@ read -p $'\e[1;92m[\e[0m\e[1;77m?\e[0m\e[1;92m] Input Username:\e[0m ' username
 
 if [[ -e /var/log/omnisint/forensics/reconwhore/$username.log ]]; then
 printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Creating reconwhore backup for last file:\e[0m\e[1;77m %s.log" $username
-zip -r reconwhore.zip /var/log/omnisint/forensics/reconwhore/$username.log 
+zip -r /home/$user/reconwhore.zip /var/log/omnisint/forensics/reconwhore/$username.log 
 fi
 printf "\n"
 printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Checking username\e[0m\e[1;77m %s\e[0m\e[1;92m on: \e[0m\n" $username
