@@ -2,7 +2,8 @@
 # Author: @NSR
 # https://github.com/JeremyEngram/ReconWhore
 
-# Some of "Found!" result is wrong/incorrect
+
+Some of "Found!" result is wrong/incorrect
 Edit "grep -o 'sometexthere' ; echo $?" to fix the problem
 
 Find usernames, legal names, emails, phone, address (majority untested)...etc  iterate across countless social networks, public records, even adult sites!
