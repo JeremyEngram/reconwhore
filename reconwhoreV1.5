@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Trap Ctrl+C to gracefully exit
+trap 'printf "\n"; partial; exit 1' 2
+
+# Function to print the banner
+banner() {
+  cat << EOF
+===========================================================
+       ReconWhore v1.5
+       Refactored from userecon, ReconWhore cross-references 
+       multiple OSINT-based datapoints for person-based 
+       recon including usernames, legal names, email, social 
+       networks, and extends to adult sites, members-only 
+       content sites, public records, and more!
+===========================================================
+Scans a username and cross-references across multiple adult
+social networks to validate that person as being active or 
+otherwise inconsistent catfish/fake/stalker/trolling...
+If accounts are found, it redundantly attempts to pull 
+personally posted content from their account with any 
+personally identifiable information from various sources 
+such as age/dob/phone/addresses.
+EOF
+}
+
+# Function to print partial information
+partial() {
+  if [[ -e "$username" ]]; then
+    printf "\e[1;92m[*]\e[0m Saved: %s.txt\n" "$username"
+  fi
+}
+
+# Function to check if a site exists for the given username
+check_site() {
+  local site_name="$1"
+  local site_url="https://www.$site_name.com/$username"
+  local check_result=$(curl -s "$site_url" -L -H "Accept-Language: en" | grep -o 'page doesn’t exist'; echo $?)
+
+  if [[ $check_result == 1 ]]; then
+    printf "\e[1;92mFound!\e[0m %s\n" "$site_url"
+    printf "%s\n" "$site_url" >> "/var/log/omnisint/forensics/reconwhore/$username.log"
+  elif [[ $check_result == 0 ]]; then
+    printf "\e[1;93mNot Found!\e[0m\n"
+  fi
+}
+
+# Main script
+banner
+
+read -p $'\e[1;92m[?]\e[0m Input Username: ' username
+
+if [[ -e "/var/log/omnisint/forensics/reconwhore/$username.log" ]]; then
+  printf "\e[1;92m[*]\e[0m Creating ReconWhore backup for the last file: %s.log\n" "$username"
+  zip -r "/home/$user/reconwhore.zip" "/var/log/omnisint/forensics/reconwhore/$username.log"
+fi
+
+printf "\n\e[1;92m[*]\e[0m Checking username %s on:\n" "$username"
+
+sites=("fetlife" "onlyfans" "adultfriendfinder" "alt" "whiplr" "xnxx" "redtube" "pornhub" "youporn" "myfreecams" "fansly")
+
+for site in "${sites[@]}"; do
+  printf "\e[1;77m[+]\e[0m %s: " "$site"
+  check_site "$site"
+done
+
+partial
