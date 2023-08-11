@@ -2,12 +2,12 @@
 # ReconWhore v1.5
 # Author: @NSR
 # https://github.com/thelinuxchoice/usercheck
-
+ 
 trap 'printf "\n";partial;exit 1' 2
 
 # Set the username and log file path
 username=""
-log_dir="/var/log/omnisint/forensics/reconwhore"
+log_dir="/var/log/omnisint/forensics/reconwhore.log"
 
 banner() {
     echo '==========================================================='
