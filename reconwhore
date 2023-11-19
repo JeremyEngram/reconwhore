@@ -1,5 +1,13 @@
 #!/bin/bash
 
+figlet "ReconWhore"; echo 
+
+# Check for root privileges
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 # Trap Ctrl+C to gracefully exit
 trap 'printf "\n"; partial; exit 1' 2
 
@@ -7,7 +15,7 @@ trap 'printf "\n"; partial; exit 1' 2
 banner() {
   cat << EOF
 ===========================================================
-       ReconWhore v1.5
+  ReconWhore v1.5
        Refactored from userecon, ReconWhore cross-references 
        multiple OSINT-based datapoints for person-based 
        recon including usernames, legal names, email, social 
